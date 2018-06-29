@@ -208,6 +208,13 @@ import UIKit
             updateLabelPositions()
         }
     }
+    
+    // Set padding between the slider line and the left/right edges of the view
+    @IBInspectable open var linePadding: CGFloat = 16.0 {
+        didSet {
+            updateLineHeight()
+        }
+    }
 
     /// The label displayed in accessibility mode for minimum value handler. If not set, the default is empty String.
     @IBInspectable open var minLabelAccessibilityLabel: String?
@@ -459,10 +466,9 @@ import UIKit
     }
 
     private func updateLineHeight() {
-        let barSidePadding: CGFloat = 16.0
         let yMiddle: CGFloat = frame.height / 2.0
-        let lineLeftSide: CGPoint = CGPoint(x: barSidePadding, y: yMiddle)
-        let lineRightSide: CGPoint = CGPoint(x: frame.width - barSidePadding,
+        let lineLeftSide: CGPoint = CGPoint(x: linePadding, y: yMiddle)
+        let lineRightSide: CGPoint = CGPoint(x: frame.width - linePadding,
                                              y: yMiddle)
         sliderLine.frame = CGRect(x: lineLeftSide.x,
                                   y: lineLeftSide.y,
